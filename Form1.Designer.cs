@@ -41,6 +41,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.openFolderBtn = new System.Windows.Forms.Button();
             this.DownloadBtn = new System.Windows.Forms.Button();
+            this.ratingtFolderCheckBox = new System.Windows.Forms.CheckBox();
+            this.fileCountLb = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // QueryTextBox
@@ -49,7 +51,7 @@
             this.QueryTextBox.Name = "QueryTextBox";
             this.QueryTextBox.Size = new System.Drawing.Size(259, 20);
             this.QueryTextBox.TabIndex = 0;
-            this.QueryTextBox.Text = "Gay wolf fox order:score rating:e";
+            this.QueryTextBox.Text = "Gay wolf fox order:score";
             // 
             // fileTextbox
             // 
@@ -73,7 +75,7 @@
             this.pageTextBox.Name = "pageTextBox";
             this.pageTextBox.Size = new System.Drawing.Size(100, 20);
             this.pageTextBox.TabIndex = 3;
-            this.pageTextBox.Text = "99";
+            this.pageTextBox.Text = "1";
             this.pageTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // usernameTextBox
@@ -139,13 +141,14 @@
             this.openFolderBtn.TabIndex = 10;
             this.openFolderBtn.Text = "...";
             this.openFolderBtn.UseVisualStyleBackColor = true;
+            this.openFolderBtn.Click += new System.EventHandler(this.openFolderBtn_Click);
             // 
             // DownloadBtn
             // 
             this.DownloadBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.DownloadBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DownloadBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(129)))), ((int)(((byte)(224)))));
-            this.DownloadBtn.Location = new System.Drawing.Point(12, 206);
+            this.DownloadBtn.Location = new System.Drawing.Point(12, 234);
             this.DownloadBtn.Name = "DownloadBtn";
             this.DownloadBtn.Size = new System.Drawing.Size(259, 28);
             this.DownloadBtn.TabIndex = 11;
@@ -153,12 +156,36 @@
             this.DownloadBtn.UseVisualStyleBackColor = true;
             this.DownloadBtn.Click += new System.EventHandler(this.button2_Click);
             // 
+            // ratingtFolderCheckBox
+            // 
+            this.ratingtFolderCheckBox.AutoSize = true;
+            this.ratingtFolderCheckBox.Location = new System.Drawing.Point(12, 202);
+            this.ratingtFolderCheckBox.Name = "ratingtFolderCheckBox";
+            this.ratingtFolderCheckBox.Size = new System.Drawing.Size(170, 17);
+            this.ratingtFolderCheckBox.TabIndex = 12;
+            this.ratingtFolderCheckBox.Text = "Split into different rating folders";
+            this.ratingtFolderCheckBox.UseVisualStyleBackColor = true;
+            this.ratingtFolderCheckBox.CheckedChanged += new System.EventHandler(this.ratingtFolderCheckBox_CheckedChanged);
+            // 
+            // fileCountLb
+            // 
+            this.fileCountLb.AutoSize = true;
+            this.fileCountLb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.fileCountLb.Location = new System.Drawing.Point(12, 240);
+            this.fileCountLb.Name = "fileCountLb";
+            this.fileCountLb.Size = new System.Drawing.Size(142, 16);
+            this.fileCountLb.TabIndex = 13;
+            this.fileCountLb.Text = "0 Files downloaded";
+            this.fileCountLb.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(35)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(288, 246);
+            this.ClientSize = new System.Drawing.Size(288, 276);
+            this.Controls.Add(this.fileCountLb);
+            this.Controls.Add(this.ratingtFolderCheckBox);
             this.Controls.Add(this.DownloadBtn);
             this.Controls.Add(this.openFolderBtn);
             this.Controls.Add(this.label5);
@@ -175,11 +202,12 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(304, 285);
-            this.MinimumSize = new System.Drawing.Size(304, 285);
+            this.MaximumSize = new System.Drawing.Size(304, 315);
+            this.MinimumSize = new System.Drawing.Size(304, 315);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "E621 Downloader";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -199,6 +227,8 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button openFolderBtn;
         private System.Windows.Forms.Button DownloadBtn;
+        private System.Windows.Forms.CheckBox ratingtFolderCheckBox;
+        private System.Windows.Forms.Label fileCountLb;
     }
 }
 

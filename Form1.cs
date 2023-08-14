@@ -33,14 +33,18 @@ namespace e621Downloader
             string fileName = fileTextbox.Text;
             string folderName = folderTextBox.Text;
             string user = usernameTextBox.Text;
-            bool useMultipleFolder = true;
+            bool useMultipleFolder = ratingtFolderCheckBox.Checked;
 
-            if (!Directory.Exists(Path.Combine(Directory.GetCurrentDirectory(), folderName)))
+            int downloadedFile = 0;
+            fileCountLb.Visible = true;
+            DownloadBtn.Visible = false;
+
+            if (!Directory.Exists( folderName ))
             {
-                Directory.CreateDirectory(Path.Combine(Directory.GetCurrentDirectory(), folderName));
+                Directory.CreateDirectory( folderName );
             }
 
-            string folder = Path.Combine(Directory.GetCurrentDirectory(), folderName);
+            string folder =  folderName;
 
             if (useMultipleFolder)
             {
@@ -95,6 +99,8 @@ namespace e621Downloader
                             }
 
                             Console.WriteLine("Image successfully Downloaded: " + file);
+                            downloadedFile += 1;
+                            fileCountLb.Text = $"{downloadedFile} Files downloaded";
                         }
                         else
                         {
@@ -106,12 +112,35 @@ namespace e621Downloader
                 u++;
             }
         }
+
+        
+
         static void CreateSubfolderIfNotExists(string parentFolder, string subfolder)
         {
             string subfolderPath = Path.Combine(parentFolder, subfolder);
             if (!Directory.Exists(subfolderPath))
             {
                 Directory.CreateDirectory(subfolderPath);
+            }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            folderTextBox.Text = Path.Combine(Directory.GetCurrentDirectory(), "yiff");
+        }
+
+        private void ratingtFolderCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void openFolderBtn_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+            folderBrowserDialog.SelectedPath = folderTextBox.Text ?? Path.Combine(Directory.GetCurrentDirectory(), "yiff");
+            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+            {
+                folderTextBox.Text = folderBrowserDialog.SelectedPath;
             }
         }
     }
